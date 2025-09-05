@@ -14,12 +14,14 @@ export default function App() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isModlOpen, setIsModalOpen] = useState(false);
+  const [movie, setMovie] = useState<Movie | undefined>(undefined);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   const handleMovie = async (query: string) => {
     try {
+      setMovies([]);
       setError(false);
       setLoading(true);
       const data = await fetchMovies(query);
@@ -39,9 +41,11 @@ export default function App() {
     <div className={css.app}>
       <SearchBar onSubmit={handleMovie} />
       {loading && <Loader />}
-      {movies.length > 0 && <MovieGrid movies={movies} />}
       {error && <ErrorMessage />}
-      {isModlOpen && <MovieModal onClose={closeModal} />}
+      {movies.length > 0 && (
+        <MovieGrid movies={movies} onOpen={openModal} setMovie={setMovie} />
+      )}
+      {isModlOpen && movie && <MovieModal onClose={closeModal} movie={movie} />}
     </div>
   );
 }
