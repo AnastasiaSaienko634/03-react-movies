@@ -1,5 +1,4 @@
 import styles from "./SearchBar.module.css";
-import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 
 interface onSubmitProps {
@@ -19,7 +18,6 @@ export function SearchBar({ onSubmit }: onSubmitProps) {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <Toaster position="top-center" reverseOrder={false} />
         <a
           className={styles.link}
           href="https://www.themoviedb.org/"

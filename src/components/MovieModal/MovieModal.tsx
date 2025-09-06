@@ -4,12 +4,12 @@ import type React from "react";
 import { useEffect } from "react";
 import type { Movie } from "../../types/movie";
 
-interface ModalProps {
+interface MovieModalProps {
   onClose: () => void;
   movie: Movie;
 }
 
-export default function MovieModal({ onClose, movie }: ModalProps) {
+export default function MovieModal({ onClose, movie }: MovieModalProps) {
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
